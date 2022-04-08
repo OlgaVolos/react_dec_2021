@@ -1,8 +1,21 @@
 import React from 'react';
 
-function User({user}) {
+function User({user, getUserId, getSingle}) {
+    const {id, name, username} = user
+
+
+
     return (
-        <div></div>
+        <div className={'silver'}>
+            {id} -- {name} -- {username}
+            <button onClick={() => {
+                getUserId(id)
+                getSingle(user)
+            }
+            }>
+                Click
+            </button>
+        </div>
     );
 }
 
