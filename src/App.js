@@ -2,8 +2,7 @@ import './App.css';
 import {Button} from "./components";
 import {Navigate, Route, Routes} from "react-router-dom";
 import {MainLayout} from "./layouts";
-import {AboutPage, HomePage, NotFoundPage, SinglePostPage, PostPage, UserPage} from "./pages";
-import {SingleUserPage} from "./pages/SingleUserPage/SingleUserPage";
+import {AboutPage, HomePage, NotFoundPage, SinglePostPage, PostPage, UserPage, SingleUserPage} from "./pages";
 
 function App() {
   return (
