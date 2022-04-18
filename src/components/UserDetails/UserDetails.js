@@ -11,7 +11,8 @@ const UserDetails = ({user}) => {
             <div>name: {name}</div>
             <div>username: {username}</div>
             <div>email : {email}</div>
-            <button>User's posts</button>
+            <br/>
+            <Button to={'posts'}>Get posts</Button>
         </div>
     );
 };

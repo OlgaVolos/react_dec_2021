@@ -1,14 +1,16 @@
 import React from 'react';
 import {Button} from "../Button/Button";
 
-const Post = ({post}) => {
+const Post = ({post, flag}) => {
 
     const {id, title} = post;
 
     return (
         <div>
             {id}). {title}
-            <Button to={id.toString()}>Post details</Button>
+            {
+                flag && <Button to={id.toString()} state={post}>Post details</Button>
+            }
         </div>
     );
 };
