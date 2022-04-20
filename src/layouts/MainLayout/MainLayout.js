@@ -9,7 +9,7 @@ const MainLayout = () => {
             <div className={css.header}>
                 <NavLink to="/home">Home</NavLink>
                 <NavLink to="/users">Users</NavLink>
-                <NavLink to="/posts">Posts</NavLink>
+                <NavLink to="/posts" replace>Posts</NavLink>
                 <NavLink to="/about">About</NavLink>
             </div>
             <hr/>
@@ -28,4 +28,6 @@ export {MainLayout};
 // другий варіант - це NavLink, додає клас ектів і дає змогу його стиізувати
 // navigate діє як навігація вперед-назад
 // ще один варіант - він може знищувати історію (компонента ПОСТ)
+// replace стирає попередній хід, попередній роут. Це використовують для логінації
+// щоб сторінка логінації не зберігалася і залогінений юзер не заходив на неї
 
