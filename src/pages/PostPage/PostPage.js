@@ -6,12 +6,12 @@ import {MyContext} from "../../index";
 
 const PostPage = () => {
     const [posts, setPosts] = useState([]);
-    const value = useContext(MyContext);
+    // const value = useContext(MyContext);
 
     useEffect(() => {
         postService.getAll().then(({data}) => setPosts(data));
-        console.log(value);
-        value.name='Olha'
+        // console.log(value);
+        // value.name='Olha'
     }, [])
     return (
         <div style={{display: 'flex'}}>
