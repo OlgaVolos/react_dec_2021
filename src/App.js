@@ -47,7 +47,7 @@ const reducer = (state, action) => {
             return {
                 ...state, counter3: action.payload
             }
-        default: return
+        default: return state
 
     }
 }
