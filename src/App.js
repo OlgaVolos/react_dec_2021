@@ -1,11 +1,18 @@
 import './App.css';
+import {Cats, CatsForm, Dogs, DogsForm} from "./components";
 
 function App() {
-  return (
-    <div >
+    return (
+        <div>
+            {/*<CatsForm/>*/}
+            {/*<hr/>*/}
+            {/*<Cats/>*/}
 
-    </div>
-  );
+            <DogsForm/>
+            <hr/>
+            <Dogs/>
+        </div>
+    );
 }
 
 export default App;
