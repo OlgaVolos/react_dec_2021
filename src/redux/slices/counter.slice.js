@@ -42,7 +42,7 @@ const {reducer: counterReducer, actions: {
     resetCount2}} = counterSlice;
 
 export default counterReducer;
-export {
+export const counterActions = {
     incCount1,
     decCount1,
     resetCount1,
