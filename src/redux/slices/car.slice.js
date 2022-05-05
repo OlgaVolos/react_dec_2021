@@ -3,7 +3,8 @@ import {carService} from "../../services";
 
 const initialState = {
     cars: [],
-    status: null // статус загрузки, записуємо всюди
+    status: null, // статус загрузки, записуємо всюди
+    formErrors:{} // щоб витягувати помилки
 }
 const getAll = createAsyncThunk(
     'getAllCars',
@@ -13,11 +14,18 @@ const getAll = createAsyncThunk(
     }
 );
 
-const create = createAsyncThunk(
+const createAsync = createAsyncThunk(
     'create',
-    async ({car}) => {
+    async ({car}, {dispatch,rejectWithValue}) => {
+        try{
         const {data} = await carService.create(car);
-        return data
+        dispatch(create({car: data}))
+        // return data // якщо робимо в reducers, то повертати data не треба, але біля
+            // rejectWithValue викликаємо  dispatch
+        }
+        catch (e) {
+          return  rejectWithValue({status: e.message, formErrors: e.response.data})
+        }
 
     } // в параметри можна передати лише один аргумент, тому
     // кладемо об"єкт
@@ -25,7 +33,11 @@ const create = createAsyncThunk(
 const carSlice = createSlice({
         name: 'carSlice',
         initialState,
-        reducers: {},
+        reducers: {
+            create:((state, action) => {
+                state.cars.push(action.payload.car)
+            })
+        },
         extraReducers: {
             [getAll.pending]: (state, action) => {
                 state.status = 'loading...'
@@ -38,11 +50,14 @@ const carSlice = createSlice({
                 state.status = 'rejected'
 
             },
-            [create.fulfilled]: (state, action) => {
-                state.cars.push(action.payload)
+            [createAsync.fulfilled]: (state, action) => {
+                // state.cars.push(action.payload); //якщо робимо в reducers, то тут не треба
+                state.status = 'completed'
             },
-            [create.rejected]: (state, action) => {
-                console.log('error');
+            [createAsync.rejected]: (state, action) => {
+              const {status, formErrors} = action.payload;
+              state.status = status;
+              state.formErrors = formErrors;
             },
 
         }
@@ -50,11 +65,13 @@ const carSlice = createSlice({
     }
 );
 
-const {reducer: carReducer, actions: {}} = carSlice;
+const {reducer: carReducer, actions:{create}} = carSlice;
 
 const carActions = {
     getAll,
+    createAsync,
     create
+
 } //ці екшени з extraReducers
 
 export {
