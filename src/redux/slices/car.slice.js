@@ -71,14 +71,18 @@ const carSlice = createSlice({
                 .addCase(getAll.fulfilled, (state, action) => {
                     state.status = 'completed'
                     state.cars = action.payload;
+                    console.log(action.payload);
                 })
                 .addCase(createAsync.fulfilled, (state, action) => {
-                    state.status = 'completed'
-                }) // це просто інший запис extraReducers, еквівалентний попередньому
+                    state.status = 'completed';
+                    console.log(action.payload);
+                })
                 .addCase(createAsync.rejected, (state, action) => {
                     const {status, formErrors} = action.payload;
-                            state.status = status;
-                            state.formErrors = formErrors;
+                    state.status = status;
+                    state.formErrors = formErrors;
+                    console.log(action.payload);
+                    // це просто інший запис extraReducers, еквівалентний попередньому
                 })
         }
 
