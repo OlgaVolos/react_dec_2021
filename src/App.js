@@ -1,16 +1,21 @@
 import './App.css';
-import {Cars} from "./components";
-import {CarForm} from "./components/CarForm";
+import {Navigate, Route, Routes} from "react-router-dom";
+
+import {MainLayout} from "./layouts";
+import {CarPage, CarsPage, NotFoundPage} from "./pages";
 
 function App() {
     return (
-        <div>
-
-            <CarForm/>
-            <hr/>
-            <Cars/>
-        </div>
+       <Routes>
+           <Route path={'/'} element={<MainLayout/>}>
+               <Route index element={<Navigate to={'cars'}/>}/>
+               <Route path={'cars/:carId'} element={<CarPage/>}/>
+               <Route path={'cars'} element={<CarsPage/>}/>
+               <Route path={'*'} element={<NotFoundPage/>}/>
+           </Route>
+       </Routes>
     );
 }
 
 export default App;
+// <Route path={'cars/:carId'} element={<CarPage/>}/> пишеться вище, щоб відпрацювало першою

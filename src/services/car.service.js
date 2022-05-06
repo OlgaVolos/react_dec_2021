@@ -3,9 +3,14 @@ import {urls} from "../constants";
 
 const carService = {
     getAll:()=> axiosService.get(urls.cars),
-    create: (car) => axiosService.post(urls.cars, car)
+    create: (car) => axiosService.post(urls.cars, car),
+    getById: (id) => axiosService.get(`${urls.cars}/${id}`),
+    deleteById: (id) => axiosService.delete(`${urls.cars}/${id}`),
+    updateById: (id, car) => axiosService.put(`${urls.cars}/${id}`, car)
 }
 
 export {
     carService
 }
+//put змінює всі поля, може замінити і одне, але обов"язково проходиться по всіх,
+//patch змінює лише якесь поле
