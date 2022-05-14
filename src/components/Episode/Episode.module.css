@@ -1,0 +1,21 @@
+.episode{
+    height: 150px;
+    width: 250px;
+    box-sizing: border-box;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    margin-left: calc(10% - 126px);
+    margin-right: calc(10% - 126px);
+    margin-bottom: 10px;
+
+    cursor: pointer;
+}
+
+.episode:hover{
+    background: silver;
+
+}
